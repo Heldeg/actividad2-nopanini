@@ -1,0 +1,13 @@
+# Archivos de Sistema Operativo (Mac/Windows/Linux)
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de IDEs (VS Code, IntelliJ, etc.)
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs generales
+*.log
