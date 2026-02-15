@@ -14,7 +14,7 @@ Monorepo configurado con Laravel (Backend/API) usando Docker Sail y Angular (Fro
 ### 1. Clonar el repositorio
 ```bash
 git clone [https://github.com/TU_USUARIO/TU_REPO.git](https://github.com/TU_USUARIO/TU_REPO.git)
-cd mi-proyecto-fullstack
+cd actividad2-nopanini
 ```
 
 ### 2. Configurar Backend (Laravel)
@@ -36,7 +36,7 @@ docker run --rm \
 5. Generar llave y base de datos:
 ```
 ./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate
+./vendor/bin/sail artisan migrate --seed
 ```
 
 ### 3. Configurar Frontend (Angular)
