@@ -25,4 +25,8 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class, 'employee_id', 'id');
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'employee_id', 'id');
+    }
 }

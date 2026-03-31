@@ -45,10 +45,10 @@ class Book extends Model
         return $this->belongsToMany(Client::class, 'user_likes', 'isbn', 'client_id')->withTimestamps();
     }
 
-    public function books()
+    public function orders()
     {
-        return $this->belongsToMany(Book::class, 'contains', 'order_id', 'isbn')
-            ->withPivot(['quantity', 'price']) 
+        return $this->belongsToMany(Order::class, 'contains', 'isbn', 'order_id')
+            ->withPivot(['quantity']) 
             ->withTimestamps();
     }
 

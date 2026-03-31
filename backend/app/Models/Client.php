@@ -34,5 +34,9 @@ class Client extends Model
     {
         return $this->belongsToMany(Book::class, 'user_likes', 'client_id', 'isbn')->withTimestamps();
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'client_id', 'id');
+    }
 
 }
