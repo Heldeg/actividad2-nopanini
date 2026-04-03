@@ -48,7 +48,8 @@ class Book extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'contains', 'isbn', 'order_id')
-            ->withPivot(['quantity']) 
+            ->using(Contain::class)
+            ->withPivot(['quantity'])
             ->withTimestamps();
     }
 
