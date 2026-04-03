@@ -27,9 +27,21 @@ class OrderController extends Controller
             'client_id' => 'nullable|exists:clients,client_id',
             'employee_id' => 'nullable|exists:employees,employee_id',
             'library_id' => 'required|exists:libraries,id',
+
+            'books' => 'required|array',
+            'books.*.isbn' => 'required|exists:books,isbn',
+            'books.*.quantity' => 'required|integer|min:1',
         ]);
 
         $order = Order::create($validatedData);
+        $pivotData = [];
+        foreach ($request->books as $book) {
+            $pivotData[$book['isbn']] = ['quantity' => $book['quantity']];
+        }
+        $order->books()->sync($pivotData);
+        $order->load('books');
+
+
         return response()->json($order, 201);
     }
 
