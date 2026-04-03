@@ -20,4 +20,8 @@ class Contain extends Model
     {
         return $this->belongsTo(Book::class, 'isbn', 'isbn');
     }
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id', 'id');
+    }
 }
