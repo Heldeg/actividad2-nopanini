@@ -45,9 +45,9 @@ class LibraryController extends Controller
     public function update(Request $request, Library $library)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:200',
-            'address' => 'required|string|max:200',
-            'tel_number' => 'required|string|max:20',
+            'name' => 'sometimes|string|max:200',
+            'address' => 'sometimes|string|max:200',
+            'tel_number' => 'sometimes|string|max:20',
         ]);
 
         $library->update($validatedData);
@@ -60,6 +60,6 @@ class LibraryController extends Controller
     public function destroy(Library $library)
     {
         $library->delete();
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Library deleted successfully'], 204);
     }
 }
