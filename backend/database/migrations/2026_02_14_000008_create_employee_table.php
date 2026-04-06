@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->unsignedBigInteger('client_id');
-            $table->primary('client_id');
-
-            $table->foreign('client_id')
-              ->references('id') // Apunta al 'id' de la tabla users
+        Schema::create('employee', function (Blueprint $table) {
+            $table->unsignedBigInteger('employee_id');
+            $table->primary('employee_id');
+            $table->string('dni', 100)->unique();
+            $table->string('tel_number', 200);
+            $table->string('bank_account', 200);
+            $table->foreign('employee_id')
+              ->references('user_id') // Apunta al 'id' de la tabla users
               ->on('users')
               ->onDelete('cascade')
               ->onUpdate('cascade');
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('employee');
     }
 };

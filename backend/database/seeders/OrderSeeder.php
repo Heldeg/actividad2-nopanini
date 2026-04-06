@@ -25,7 +25,7 @@ class OrderSeeder extends Seeder
             ]);
 
             Contain::create([
-                'order_id' => $order->id,
+                'order_id' => $order->order_id,
                 'isbn' => '978-' . sprintf('%04d', $i),
                 'quantity' => rand(1, 3),
             ]);

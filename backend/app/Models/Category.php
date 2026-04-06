@@ -9,28 +9,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'categories';
+    protected $table = 'category';
 
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = 'property_id';
     public $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'category_id',
+        'property_id',
         'name',
-        'parent_category_id'
+        'parent_property_id'
     ];
 
     public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_category_id', 'category_id');
+        return $this->belongsTo(Category::class, 'parent_property_id', 'property_id');
     }
     public function property()
     {
-        return $this->belongsTo(Property::class, 'category_id', 'category_id');
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'classifies', 'property_id', 'isbn')->withTimestamps();
+        return $this->belongsToMany(Book::class, 'classify', 'property_id', 'isbn')->withTimestamps();
     }
 }

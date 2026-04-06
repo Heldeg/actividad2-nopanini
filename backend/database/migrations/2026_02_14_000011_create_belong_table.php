@@ -10,25 +10,20 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('author_writes', function (Blueprint $table) {
-            $table->unsignedBigInteger('author_id');
-            $table->string('isbn', 20);
-
-
-
-            $table->foreign('author_id')
-                ->references('author_id')
-                ->on('authors')
-                ->onDelete('restrict')
+        Schema::create('belong', function (Blueprint $table) {
+            $table ->unsignedBigInteger('inventory_id');
+            $table->foreign('inventory_id')
+                ->references('inventory_id')
+                ->on('inventory')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
-
+            $table->string('isbn', 20);
             $table->foreign('isbn')
                 ->references('isbn')
-                ->on('books')
-                ->onDelete('restrict')
+                ->on('book')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
-                
-            $table->primary(['author_id', 'isbn']);
+            $table->primary(['inventory_id', 'isbn']);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -39,6 +34,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('author_writes');
+        Schema::dropIfExists('belong');
     }
 };

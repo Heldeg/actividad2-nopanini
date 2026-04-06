@@ -16,10 +16,10 @@ return new class extends Migration {
 
             $table->foreign('client_id')
                 ->references('client_id') 
-                ->on('clients')
+                ->on('client')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('isbn')->references('isbn')->on('books')
+            $table->foreign('isbn')->references('isbn')->on('book')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

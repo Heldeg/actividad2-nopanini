@@ -9,8 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Property extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'property';
+    protected $primaryKey = 'property_id';
+    public $incrementing = false;
 
     protected $fillable = [
+        'property_id',
         'name',
     ];
 

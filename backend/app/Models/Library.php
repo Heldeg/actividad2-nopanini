@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Library extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'library';
+    protected $primaryKey = 'library_id';
       protected $fillable = [
+        'library_id',
         'name',
         'address',
         'tel_number',

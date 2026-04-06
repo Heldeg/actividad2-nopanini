@@ -11,28 +11,27 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('order_id')->autoIncrement()->primary();
             $table->decimal('total', 10, 2);
             $table->enum('type', ['online', 'physical']);
-
-            $table->unsignedBigInteger('client_id')->nullable();
+            $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')
                 ->references('client_id')
-                ->on('clients')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
-
-            $table->unsignedBigInteger('employee_id')->nullable();
-            $table->foreign('employee_id')
-                ->references('employee_id')
-                ->on('employees')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
-
-            $table->foreignId('library_id')->constrained('libraries')
+                ->on('client')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
-
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')
+                ->references('employee_id')
+                ->on('employee')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+            $table->unsignedBigInteger('library_id');
+            $table->foreign('library_id')
+                ->references('library_id')
+                ->on('library')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contains', function (Blueprint $table) {
-            $table->id();
-            $table->string('isbn', 20);
+        Schema::create('inventory', function (Blueprint $table) {
+            $table->unsignedBigInteger('inventory_id')->autoIncrement()->primary();
+            $table->unsignedBigInteger('library_id');
+            $table->foreign('library_id')
+                ->references('library_id')
+                ->on('library')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
             $table->integer('quantity');
-
-            $table->foreign('isbn')->references('isbn')->on('books')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
-            $table->foreignId('order_id')->constrained('orders')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
+            $table->string('location', 100);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contains');
+        Schema::dropIfExists('inventory');
     }
 };

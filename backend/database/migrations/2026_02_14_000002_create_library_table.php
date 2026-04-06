@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('libraries', function (Blueprint $table) {
-            $table->id();
+        Schema::create('library', function (Blueprint $table) {
+            $table->unsignedBigInteger('library_id')->autoIncrement()->primary();
             $table->string('name', 200);
             $table->string('address', 200);
             $table->string('tel_number', 20);
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('library');
     }
 };

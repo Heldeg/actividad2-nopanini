@@ -30,7 +30,7 @@ class BookSeeder extends Seeder
         foreach ($books as $b) {
             $book = Book::create([
                 'isbn' => $b[0],
-                'editorial_id' => $b[1], 
+                'editorial' => $b[1], 
                 'title' => $b[2],
                 'description' => $b[3],
                 'edition_num' => $b[4],

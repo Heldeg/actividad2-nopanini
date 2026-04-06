@@ -9,17 +9,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Editorial extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'editorials';
+    protected $table = 'editorial';
 
-    protected $primaryKey = 'editorial_id';
+    protected $primaryKey = 'property_id';
     public $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'editorial_id',
+        'property_id',
         'tel_number',
     ];
     public function property()
     {
-        return $this->belongsTo(Property::class, 'editorial_id', 'id');
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 }

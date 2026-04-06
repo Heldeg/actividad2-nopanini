@@ -10,22 +10,21 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('book', function (Blueprint $table) {
             $table->string('isbn', 20);
             $table->primary('isbn');
+            $table->unsignedBigInteger('editorial');
+            $table->foreign('editorial')
+                ->references('property_id')
+                ->on('editorial')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
             $table->string('title', 255);
             $table->text('description')->nullable();
             $table->string('edition_num', 255);
             $table->string('language', 100);
             $table->decimal('price', 10, 2);
             $table->string('cover_image', 255)->nullable();
-            $table->unsignedBigInteger('editorial_id');
-
-            $table->foreign('editorial_id')
-                ->references('editorial_id')
-                ->on('editorials')
-                ->onDelete('restrict')
-                ->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +35,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('book');
     }
 };

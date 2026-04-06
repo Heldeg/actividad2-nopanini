@@ -8,21 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Admin extends Model
 {
     use SoftDeletes;
-    protected $table = 'admins';
-
+    protected $table = 'admin';
     protected $primaryKey = 'admin_id';
-
-
     public $incrementing = false;
-
     protected $keyType = 'int';
-
     protected $fillable = [
         'admin_id',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'admin_id', 'id');
+        return $this->belongsTo(User::class, 'admin_id', 'user_id');
     }
 }
