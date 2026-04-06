@@ -30,11 +30,11 @@ class Book extends Model
     {
         return $this->belongsTo(Editorial::class, 'editorial', 'property_id');
     }
-    public function authors()
+    public function author()
     {
-        return $this->belongsToMany(Author::class, 'author_writes', 'isbn', 'property_id')->withTimestamps();
+        return $this->belongsToMany(Author::class, 'author_write', 'isbn', 'property_id')->withTimestamps();
     }
-    public function categories()
+    public function category()
     {
         return $this->belongsToMany(Category::class, 'classify', 'isbn', 'property_id')->withTimestamps();
     }
@@ -44,7 +44,7 @@ class Book extends Model
         return $this->belongsToMany(Client::class, 'user_likes', 'isbn', 'client_id')->withTimestamps();
     }
 
-    public function orders()
+    public function order()
     {
         return $this->belongsToMany(Order::class, 'contain', 'isbn', 'order_id')
             ->withPivot(['quantity']) 

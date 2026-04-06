@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AuthorWrite extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'author_writes';
+    protected $table = 'author_write';
 
     public $incrementing = false;
     public $timestamps = true;

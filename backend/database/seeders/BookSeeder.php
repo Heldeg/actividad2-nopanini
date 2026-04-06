@@ -39,8 +39,8 @@ class BookSeeder extends Seeder
                 'cover_image' => 'https://edit.org/images/cat/book-covers-big-2019101610.jpg', 
             ]);
 
-            $book->authors()->attach($b[7]);
-            $book->categories()->attach($b[8]);
+            $book->author()->attach($b[7]);
+            $book->category()->attach($b[8]);
         }
     }
 }
