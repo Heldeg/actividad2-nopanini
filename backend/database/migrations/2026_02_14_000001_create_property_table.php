@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('properties', function (Blueprint $table) {
-            $table->id();
+        Schema::create('property', function (Blueprint $table) {
+            $table->unsignedBigInteger('property_id')->primary();
             $table->string('name', 200);
             $table->timestamps();
             $table->softDeletes();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('properties');
+        Schema::dropIfExists('property');
     }
 };

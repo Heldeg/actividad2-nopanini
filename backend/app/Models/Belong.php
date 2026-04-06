@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Belong extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'belongs';
+    protected $table = 'belong';
 
     public $incrementing = false;
     protected $fillable = [

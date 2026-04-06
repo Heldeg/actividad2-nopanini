@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->unsignedBigInteger('author_id');
-            $table->primary('author_id');
+        Schema::create('author', function (Blueprint $table) {
+            $table->unsignedBigInteger('property_id');
+            $table->primary('property_id');
 
             $table->string('full_name', 255);
             $table->enum('gender',['M','F','O']);
@@ -20,9 +20,9 @@ return new class extends Migration {
             $table->date('birth_date');
             $table->date('death_date')->nullable();
             
-            $table->foreign('author_id')
-                ->references('id')
-                ->on('properties')
+            $table->foreign('property_id')
+                ->references('property_id')
+                ->on('property')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
@@ -35,6 +35,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('author');
     }
 };

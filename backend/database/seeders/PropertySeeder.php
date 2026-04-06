@@ -30,8 +30,8 @@ class PropertySeeder extends Seeder
             [10, 'Cedar Property', '555-1010'],
         ];
         foreach ($editorials as $ed) {
-            $prop = Property::create(['id' => $ed[0], 'name' => $ed[1]]);
-            Editorial::create(['editorial_id' => $prop->id, 'tel_number' => $ed[2]]);
+            $prop = Property::create(['property_id' => $ed[0], 'name' => $ed[1]]);
+            Editorial::create(['property_id' => $prop->property_id, 'tel_number' => $ed[2]]);
         }
 
         $authors = [
@@ -47,9 +47,9 @@ class PropertySeeder extends Seeder
             [20, 'Alice Munro', 'F', 'Canadá', '1931-07-10', '2024-05-13'],
         ];
         foreach ($authors as $au) {
-            $prop = Property::create(['id' => $au[0], 'name' => $au[1]]); // El nombre de propiedad es el nombre del autor
+            $prop = Property::create(['property_id' => $au[0], 'name' => $au[1]]); // El nombre de propiedad es el nombre del autor
             Author::create([
-                'author_id' => $prop->id,
+                'property_id' => $prop->property_id,
                 'full_name' => $au[1],
                 'gender' => $au[2],
                 'country' => $au[3],
@@ -70,11 +70,11 @@ class PropertySeeder extends Seeder
             [30, 'Misterio', 21],
         ];
         foreach ($categories as $cat) {
-            $prop = Property::create(['id' => $cat[0], 'name' => $cat[1]]);
+            $prop = Property::create(['property_id' => $cat[0], 'name' => $cat[1]]);
             Category::create([
-                'category_id' => $prop->id,
+                'property_id' => $prop->property_id,
                 'name' => $cat[1],
-                'parent_category_id' => $cat[2]
+                'parent_category' => $cat[2]
             ]);
         }
     }

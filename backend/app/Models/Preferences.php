@@ -6,26 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserLike extends Model
+class Preferences extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'user_likes';
     public $incrementing = false;
-    
 
     protected $fillable = [
-        'client_id',
-        'isbn',
+        'property_id',
+        'client_id'
     ];
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id', 'client_id');
     }
-    public function book()
+    public function property()
     {
-        return $this->belongsTo(Book::class, 'isbn', 'isbn');
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
-
-
 }

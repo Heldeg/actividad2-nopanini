@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Order extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'orders';
+    protected $primaryKey = 'order_id';
 
     protected $fillable = [
         'total',

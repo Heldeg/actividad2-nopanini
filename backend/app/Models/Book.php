@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Book extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'books';
-
+    protected $table = 'book';
     protected $primaryKey = 'isbn';
     public $incrementing = false;
     protected $keyType = 'string';
@@ -22,22 +21,22 @@ class Book extends Model
         'language',
         'price',
         'cover_image',
-        'editorial_id',
+        'editorial',
     ];
     protected $casts = [
         'price' => 'decimal:2',
     ];
     public function editorial()
     {
-        return $this->belongsTo(Editorial::class, 'editorial_id', 'editorial_id');
+        return $this->belongsTo(Editorial::class, 'editorial', 'property_id');
     }
     public function authors()
     {
-        return $this->belongsToMany(Author::class, 'author_writes', 'isbn', 'author_id')->withTimestamps();
+        return $this->belongsToMany(Author::class, 'author_writes', 'isbn', 'property_id')->withTimestamps();
     }
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'classifies', 'isbn', 'property_id')->withTimestamps();
+        return $this->belongsToMany(Category::class, 'classify', 'isbn', 'property_id')->withTimestamps();
     }
 
     public function likedByUsers()
@@ -47,9 +46,8 @@ class Book extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'contains', 'isbn', 'order_id')
-            ->using(Contain::class)
-            ->withPivot(['quantity'])
+        return $this->belongsToMany(Order::class, 'contain', 'isbn', 'order_id')
+            ->withPivot(['quantity']) 
             ->withTimestamps();
     }
 

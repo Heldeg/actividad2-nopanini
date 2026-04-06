@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Author extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'authors';
+    protected $table = 'author';
 
-    protected $primaryKey = 'author_id';
+    protected $primaryKey = 'property_id';
     public $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
-        'author_id',
+        'property_id',
         'full_name',
         'gender',
         'country',
@@ -30,7 +30,7 @@ class Author extends Model
 
     public function property() //author
     {
-        return $this->belongsTo(Property::class, 'author_id', 'id');
+        return $this->belongsTo(Property::class, 'property_id', 'id');
     }
 
     public function books()

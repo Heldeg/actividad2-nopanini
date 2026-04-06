@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inventory extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'inventories';
+    protected $table = 'inventory';
+    protected $primaryKey = 'inventory_id';
 
     protected $fillable = [
         'quantity',
@@ -23,7 +24,7 @@ class Inventory extends Model
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'belongs', 'inventory_id', 'isbn')
+        return $this->belongsToMany(Book::class, 'belong', 'inventory_id', 'isbn')
             ->withTimestamps();
     }
 }

@@ -10,15 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('editorials', function (Blueprint $table) {
-            $table->unsignedBigInteger('editorial_id');
-            $table->primary('editorial_id');
-
+        Schema::create('editorial', function (Blueprint $table) {
+            $table->unsignedBigInteger('property_id');
+            $table->primary('property_id');
             $table->string('tel_number', 200);
-
-            $table->foreign('editorial_id')
-                ->references('id')
-                ->on('properties')
+            $table->foreign('property_id')
+                ->references('property_id')
+                ->on('property')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
@@ -31,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('editorials');
+        Schema::dropIfExists('editorial');
     }
 };
