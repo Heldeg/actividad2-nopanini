@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('category', function (Blueprint $table) {
             $table->unsignedBigInteger('property_id');
-            $table->primary('property_id');
             $table->string('name', 200);
+            $table->primary('property_id');
             $table->unsignedBigInteger('parent_category')->nullable();
             $table->foreign('parent_category')
                 ->references('property_id')

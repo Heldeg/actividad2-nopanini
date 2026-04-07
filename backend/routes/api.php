@@ -3,8 +3,10 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 # Rutas para la gestión de libros
 Route::get('/books', [BookController::class, 'index'])->name('api.books.index');
@@ -45,6 +47,18 @@ Route::put('/editorials/{id}', [EditorialController::class, 'update'])->name('ap
 # Ruta para eliminar una editorial por su ID
 Route::delete('/editorials/{id}', [EditorialController::class, 'destroy'])->name('api.editorials.destroy');
 
+# Ruta para la gestión de categorías
+Route::get('/categories', [CategoryController::class, 'index'])->name('api.categories.index');
+# Ruta para la busqueda de categorías por palabras clave en el nombre
+Route::get('/categories/search', [CategoryController::class, 'search'])->name('api.categories.search');
+# Ruta para mostrar una categoría específica por su ID
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('api.categories.show');
+# Ruta para crear una nueva categoría
+Route::post('/categories', [CategoryController::class, 'store'])->name('api.categories.store');
+# Ruta para actualizar una categoría existente por su ID
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('api.categories.update');
+# Ruta para eliminar una categoría por su ID
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('api.categories.destroy');
 
 Route::get('/saludo', function () {
     return response()->json([

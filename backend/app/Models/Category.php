@@ -10,19 +10,18 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'category';
-
     protected $primaryKey = 'property_id';
     public $incrementing = false;
     protected $keyType = 'int';
     protected $fillable = [
         'property_id',
         'name',
-        'parent_property_id'
+        'parent_category'
     ];
 
     public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_property_id', 'property_id');
+        return $this->belongsTo(Category::class, 'parent_category', 'property_id');
     }
     public function property()
     {

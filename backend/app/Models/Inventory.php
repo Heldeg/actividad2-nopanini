@@ -13,9 +13,10 @@ class Inventory extends Model
     protected $primaryKey = 'inventory_id';
 
     protected $fillable = [
+        'inventory_id',
+        'library_id',
         'quantity',
-        'location',
-        'library_id'
+        'location'
     ];
     public function library()
     {
