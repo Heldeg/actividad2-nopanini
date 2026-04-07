@@ -27,12 +27,16 @@ class Client extends Model
     }
     public function preferences()
     {
-        return $this->belongsToMany(Property::class, 'preferences', 'client_id', 'property_id')->withTimestamps();
+        return $this->belongsToMany(Property::class, 'preferences', 'client_id', 'property_id')
+        ->using(Preference::class)
+        ->withTimestamps();
     }
 
     public function likedBooks()
     {
-        return $this->belongsToMany(Book::class, 'user_likes', 'client_id', 'isbn')->withTimestamps();
+        return $this->belongsToMany(Book::class, 'user_likes', 'client_id', 'isbn')
+        ->using(UserLike::class)
+        ->withTimestamps();
     }
     public function orders()
     {

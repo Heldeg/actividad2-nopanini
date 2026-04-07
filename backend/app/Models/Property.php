@@ -16,6 +16,8 @@ class Property extends Model
 
     public function interestedClients()
     {
-        return $this->belongsToMany(Client::class, 'preferences', 'property_id', 'client_id')->withTimestamps();
+        return $this->belongsToMany(Client::class, 'preferences', 'property_id', 'client_id')
+        ->using(Preference::class)
+        ->withTimestamps();
     }
 }

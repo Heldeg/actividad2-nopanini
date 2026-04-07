@@ -42,7 +42,9 @@ class Book extends Model
 
     public function likedByUsers()
     {
-        return $this->belongsToMany(Client::class, 'user_likes', 'isbn', 'client_id')->withTimestamps();
+        return $this->belongsToMany(Client::class, 'user_likes', 'isbn', 'client_id')
+        ->using(UserLike::class)
+        ->withTimestamps();
     }
 
     public function orders()

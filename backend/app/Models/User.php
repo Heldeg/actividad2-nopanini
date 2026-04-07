@@ -59,4 +59,18 @@ class User extends Authenticatable
     {
         return $this->hasOne(Admin::class, 'admin_id', 'id');
     }
+    public function isAdmin(): bool
+    {
+        return $this->admin()->exists();
+    }
+
+    public function isEmployee(): bool
+    {
+        return $this->employee()->exists();
+    }
+
+    public function isClient(): bool
+    {
+        return $this->client()->exists();
+    }
 }

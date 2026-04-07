@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserLike extends Model
+class UserLike extends Pivot
 {
     use HasFactory, SoftDeletes;
 
@@ -26,6 +26,5 @@ class UserLike extends Model
     {
         return $this->belongsTo(Book::class, 'isbn', 'isbn');
     }
-
-
+    
 }
