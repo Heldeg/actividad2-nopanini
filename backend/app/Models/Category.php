@@ -26,11 +26,13 @@ class Category extends Model
     }
     public function property()
     {
-        return $this->belongsTo(Property::class, 'category_id', 'category_id');
+        return $this->belongsTo(Property::class, 'category_id', 'id');
     }
 
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'classifies', 'property_id', 'isbn')->withTimestamps();
+        return $this->belongsToMany(Book::class, 'classifies', 'property_id', 'isbn')
+        ->using(Classify::class)
+        ->withTimestamps();
     }
 }

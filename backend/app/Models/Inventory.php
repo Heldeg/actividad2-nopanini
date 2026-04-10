@@ -24,6 +24,7 @@ class Inventory extends Model
     public function books()
     {
         return $this->belongsToMany(Book::class, 'belongs', 'inventory_id', 'isbn')
+            ->using(Belong::class)
             ->withTimestamps();
     }
 }

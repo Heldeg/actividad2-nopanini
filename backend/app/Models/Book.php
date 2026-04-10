@@ -33,11 +33,15 @@ class Book extends Model
     }
     public function authors()
     {
-        return $this->belongsToMany(Author::class, 'author_writes', 'isbn', 'author_id')->withTimestamps();
+        return $this->belongsToMany(Author::class, 'author_writes', 'isbn', 'author_id')
+        ->using(AuthorWrite::class)
+        ->withTimestamps();
     }
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'classifies', 'isbn', 'property_id')->withTimestamps();
+        return $this->belongsToMany(Category::class, 'classifies', 'isbn', 'property_id')
+        ->using(Classify::class)
+        ->withTimestamps();
     }
 
     public function likedByUsers()
@@ -53,6 +57,12 @@ class Book extends Model
             ->using(Contain::class)
             ->withPivot(['quantity'])
             ->withTimestamps();
+    }
+    public function inventories()
+    {
+        return $this->belongsToMany(Inventory::class, 'belongs', 'isbn', 'inventory_id')
+            ->using(Belong::class)
+            ->withTimestamps(); 
     }
 
 }

@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AuthorWrite extends Model
+class AuthorWrite extends Pivot
 {
     use HasFactory, SoftDeletes;
     protected $table = 'author_writes';
