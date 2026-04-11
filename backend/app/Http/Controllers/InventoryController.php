@@ -24,7 +24,8 @@ class InventoryController extends Controller
         $validatedData = $request->validate([
             'quantity' => 'required|integer',
             'location' => 'required|string|max:255',
-            'library_id' => 'required|exists:libraries,library_id'
+            'library_id' => 'required|exists:libraries,id',
+            'isbn' => 'required|exists:books,isbn'
         ]);
 
         $inventory = Inventory::create($validatedData);
@@ -44,7 +45,15 @@ class InventoryController extends Controller
      */
     public function update(Request $request, Inventory $inventory)
     {
-        //
+        $validatedData = $request->validate([
+            'quantity' => 'sometimes|required|integer',
+            'location' => 'sometimes|required|string|max:255',
+            'library_id' => 'sometimes|required|exists:libraries,id',
+            'isbn' => 'sometimes|required|exists:books,isbn'
+        ]);
+
+        $inventory->update($validatedData);
+        return response()->json($inventory);
     }
 
     /**
@@ -52,6 +61,50 @@ class InventoryController extends Controller
      */
     public function destroy(Inventory $inventory)
     {
-        //
+        $inventory->delete();
+        return response()->json(['message' => 'Inventory deleted successfully'], 200);
     }
+
+public function search(Request $request)
+    {
+        $validated = $request->validate([
+            'library_id' => 'nullable|exists:libraries,id',
+            'isbn' => 'nullable|string|exists:books,isbn',
+            'location' => 'nullable|string',
+            'min_quantity' => 'nullable|integer|min:0',
+            'max_quantity' => 'nullable|integer|min:0'
+        ]);
+
+        if (empty(array_filter($validated))) {
+            return response()->json([
+                'message' => 'Parámetros de búsqueda no válidos o vacíos'
+            ], 400);
+        }
+
+        $query = Inventory::query();
+
+        if (isset($validated['library_id'])) {
+            $query->where('library_id', $validated['library_id']);
+        }
+
+        if (isset($validated['isbn'])) {
+            $query->where('isbn', $validated['isbn']);
+        }
+
+        if (isset($validated['location'])) {
+            $query->where('location', 'like', '%' . $validated['location'] . '%');
+        }
+
+        if (isset($validated['min_quantity'])) {
+            $query->where('quantity', '>=', $validated['min_quantity']);
+        }
+
+        if (isset($validated['max_quantity'])) {
+            $query->where('quantity', '<=', $validated['max_quantity']);
+        }
+
+        $inventories = $query->with(['book', 'library'])->get();
+
+        return response()->json($inventories);
+    }    
 }

@@ -14,17 +14,16 @@ class Inventory extends Model
     protected $fillable = [
         'quantity',
         'location',
-        'library_id'
+        'library_id',
+        'isbn'
     ];
     public function library()
     {
-        return $this->belongsTo(Library::class, 'library_id', 'library_id');
+        return $this->belongsTo(Library::class, 'library_id', 'id');
     }
 
-    public function books()
+    public function book()
     {
-        return $this->belongsToMany(Book::class, 'belongs', 'inventory_id', 'isbn')
-            ->using(Belong::class)
-            ->withTimestamps();
+        return $this->belongsTo(Book::class, 'isbn', 'isbn');
     }
 }

@@ -60,9 +60,7 @@ class Book extends Model
     }
     public function inventories()
     {
-        return $this->belongsToMany(Inventory::class, 'belongs', 'isbn', 'inventory_id')
-            ->using(Belong::class)
-            ->withTimestamps(); 
+        return $this->hasMany(Inventory::class, 'isbn', 'isbn');
     }
 
 }

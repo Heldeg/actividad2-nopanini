@@ -45,7 +45,7 @@ Route::apiResource('editorials', EditorialController::class);
 Route::get('/categories/search', [CategoryController::class, 'search'])->name('api.categories.search');
 Route::apiResource('categories', CategoryController::class);
 
-
+Route::get('/inventories/search', [InventoryController::class, 'search'])->name('api.inventories.search');
 Route::apiResource('inventories', InventoryController::class);
 
 Route::get('/saludo', function () {
