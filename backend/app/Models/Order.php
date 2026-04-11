@@ -33,4 +33,13 @@ class Order extends Model
     {
         return $this->belongsTo(Library::class, 'library_id', 'library_id');
     }
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'contains', 'order_id', 'isbn')
+            ->using(Contain::class)
+            ->withPivot('quantity')
+            ->withTimestamps();
+    }
+
+
 }
