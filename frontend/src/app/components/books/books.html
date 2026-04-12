@@ -1,0 +1,20 @@
+<main class="content">
+    <section>
+        <h2 class="section-title books-title">Todos los libros</h2>
+        <div class="books-grid">
+            @for (book of books; track book.title) {
+            <article class="book-card">
+                <div class="cover-zone">
+                    <div class="cover-outline">
+                        <span class="cover-label">Portada<br />del libro</span>
+                    </div>
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">{{ book.category }}</span>
+                    <h3>{{ book.title }}</h3>
+                </div>
+            </article>
+            }
+        </div>
+    </section>
+</main>

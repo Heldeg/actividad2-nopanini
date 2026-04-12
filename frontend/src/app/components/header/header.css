@@ -1,0 +1,261 @@
+:host {
+    display: block;
+    color: #101728;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+}
+
+.library-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #fdfdfd 0%, #f9fafb 100%);
+}
+
+.topbar {
+    display: grid;
+    grid-template-columns: 230px 1fr 220px;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 38px;
+    border-bottom: 1px solid #e7e9ee;
+    background: #ffffff;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.book-icon {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: #0a122d;
+    stroke-width: 1.8;
+}
+
+.search-wrap {
+    height: 46px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f7f8fa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+}
+
+.search-wrap input {
+    flex: 1;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #5e6574;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #6c7280;
+    stroke-width: 2;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn,
+.cart-btn,
+.chip {
+    border: 1px solid #dde2eb;
+    background: #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.login-btn:hover,
+.cart-btn:hover,
+.chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(9, 15, 32, 0.1);
+}
+
+.login-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #060a2b;
+    border-color: #060a2b;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 9px 14px;
+}
+
+.login-btn svg,
+.cart-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+}
+
+.cart-btn {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 34px 38px 54px;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.chips-row {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.chip {
+    font-size: 20px;
+    padding: 8px 16px;
+    color: #121826;
+}
+
+.chip.active {
+    background: #050927;
+    color: #ffffff;
+    border-color: #050927;
+}
+
+.books-title {
+    margin-top: 46px;
+}
+
+.books-grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.book-card {
+    border: 1px solid #dfe3ea;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.cover-zone {
+    background: #d6dbe4;
+    height: 470px;
+    display: grid;
+    place-items: center;
+}
+
+.cover-outline {
+    width: calc(100% - 34px);
+    height: calc(100% - 34px);
+    border: 4px dashed #9ba4b4;
+    border-radius: 4px;
+    display: grid;
+    place-items: center;
+}
+
+.cover-label {
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    color: #6c7688;
+    font-weight: 700;
+    background: #edf0f4;
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.book-info {
+    padding: 20px 22px 26px;
+}
+
+.book-tag {
+    display: inline-block;
+    background: #050927;
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.book-info h3 {
+    margin: 14px 0 0;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #141a29;
+}
+
+@media (max-width: 1200px) {
+    .topbar {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .top-actions {
+        justify-content: flex-start;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+
+    .content,
+    .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .brand {
+        font-size: 18px;
+    }
+
+    .search-wrap input,
+    .login-btn,
+    .section-title,
+    .chip,
+    .book-info h3,
+    .cover-label {
+        font-size: 16px;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cover-zone {
+        height: 320px;
+    }
+}
