@@ -1,0 +1,54 @@
+<footer class="footer-shell">
+	<div class="footer-grid">
+		<section class="brand-block">
+			<div class="brand-row">
+				<svg class="book-icon" viewBox="0 0 24 24" aria-hidden="true">
+					<path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"></path>
+					<path d="M4 4.5V22h13.5"></path>
+				</svg>
+				<h2>NOPANINI</h2>
+			</div>
+			<p>
+				Tu libreria digital para descubrir historias nuevas cada semana,
+				recomendaciones curadas y entregas rapidas.
+			</p>
+			<div class="social-row">
+				<a href="#" aria-label="Instagram">IG</a>
+				<a href="#" aria-label="Facebook">FB</a>
+				<a href="#" aria-label="X">X</a>
+			</div>
+		</section>
+
+		<section>
+			<h3>Explorar</h3>
+			<ul>
+				@for (item of siteLinks; track item) {
+				<li><a href="#">{{ item }}</a></li>
+				}
+			</ul>
+		</section>
+
+		<section>
+			<h3>Soporte</h3>
+			<ul>
+				@for (item of supportLinks; track item) {
+				<li><a href="#">{{ item }}</a></li>
+				}
+			</ul>
+		</section>
+
+		<section class="newsletter">
+			<h3>Boletin</h3>
+			<p>Recibe lanzamientos y descuentos exclusivos.</p>
+			<form class="newsletter-form" (submit)="$event.preventDefault()">
+				<input type="email" placeholder="tu@email.com" />
+				<button type="submit">Suscribirme</button>
+			</form>
+		</section>
+	</div>
+
+	<div class="footer-bottom">
+		<p>2026 NOPANINI. Todos los derechos reservados.</p>
+		<a href="#">Politica de privacidad</a>
+	</div>
+</footer>

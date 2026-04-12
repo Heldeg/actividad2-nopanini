@@ -8,7 +8,39 @@
   "projects": {
     "frontend": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "flat": false,
+          "skipTests": false
+        },
+        "@schematics/angular:service": {
+          "flat": false
+        },
+        "@schematics/angular:guard": {
+          "flat": false
+        },
+        "@schematics/angular:interceptor": {
+          "flat": false
+        },
+        "@schematics/angular:pipe": {
+          "flat": false
+        },
+        "@schematics/angular:directive": {
+          "flat": false
+        },
+        "@schematics/angular:resolver": {
+          "flat": false
+        },
+        "@schematics/angular:module": {
+          "flat": false
+        },
+        "@schematics/angular:class": {
+          "skipTests": false
+        },
+        "@schematics/angular:interface": {
+          "prefix": ""
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -47,7 +79,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
