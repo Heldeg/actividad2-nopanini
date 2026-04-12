@@ -12,6 +12,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
 
 
 
@@ -20,18 +21,26 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::post('login', [AuthController::class, 'login'])->name('login'); // keep this name for consistency with the frontend
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
 Route::apiResource('libraries', LibraryController::class);
 
 Route::apiResource('orders', OrderController::class);
 
 //USER CONTROLLERS
-Route::post('admins/promote', [AdminController::class, 'promote'])->name('api.admins.promote');
-Route::post('employees/promote', [EmployeeController::class, 'promote'])->name('api.employees.promote');
-Route::apiResource('clients', ClientController::class);
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::apiResource('employees', EmployeeController::class);
+    Route::post('admins/promote', [AdminController::class, 'promote'])->name('api.admins.promote');
+    Route::post('employees/promote', [EmployeeController::class, 'promote'])->name('api.employees.promote');
 
-Route::apiResource('admins', AdminController::class);
+    Route::apiResource('clients', ClientController::class);
+
+    Route::apiResource('employees', EmployeeController::class);
+
+    Route::apiResource('admins', AdminController::class);
+});
 
 Route::get('/books/search', [BookController::class, 'search'])->name('api.books.search');
 Route::apiResource('books', BookController::class);

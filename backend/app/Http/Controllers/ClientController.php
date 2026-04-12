@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -36,7 +37,7 @@ class ClientController extends Controller
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
                 'email' => $validatedData['email'],
-                'password' => $validatedData['password'],
+                'password' => Hash::make($validatedData['password']),
                 'gender' => $validatedData['gender'],
             ]);
 
