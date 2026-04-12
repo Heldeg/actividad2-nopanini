@@ -1,0 +1,10 @@
+<main class="content">
+    <section>
+        <h2 class="section-title">Categorias</h2>
+        <div class="chips-row">
+            @for (category of categories(); track category) {
+            <button type="button" class="chip" [class.active]="$index === 0">{{ category.name }}</button>
+            }
+        </div>
+    </section>
+</main>

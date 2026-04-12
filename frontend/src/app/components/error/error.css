@@ -1,0 +1,91 @@
+:host {
+    display: block;
+    color: #101728;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+}
+
+.content {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 34px 38px 54px;
+}
+
+.error-content {
+    min-height: 36vh;
+    display: grid;
+    align-items: center;
+}
+
+.error-shell {
+    border: 1px solid #dfe3ea;
+    border-radius: 22px;
+    background: #ffffff;
+    padding: 36px;
+    box-shadow: 0 16px 40px rgba(10, 18, 45, 0.08);
+}
+
+.error-code {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 700;
+    color: #050927;
+}
+
+.error-shell h1 {
+    margin: 8px 0 0;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.error-message {
+    margin: 14px 0 0;
+    max-width: 62ch;
+    color: #5e6574;
+    font-size: 18px;
+    line-height: 1.45;
+}
+
+.back-home {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #060a2b;
+    color: #ffffff;
+    border: 1px solid #060a2b;
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.back-home:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(9, 15, 32, 0.2);
+}
+
+@media (max-width: 760px) {
+    .content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .error-shell {
+        padding: 22px;
+    }
+
+    .error-code {
+        font-size: 30px;
+    }
+
+    .error-shell h1 {
+        font-size: 24px;
+    }
+
+    .error-message,
+    .back-home {
+        font-size: 16px;
+    }
+}
