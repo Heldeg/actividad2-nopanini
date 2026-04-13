@@ -6,7 +6,7 @@
             <p>{{errorMessage }}</p>
         </div>
         }
-        <form (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <div class="input-wrap">
@@ -31,8 +31,10 @@
             </div>
 
 
-            <button type="submit" class="submit-btn">Login</button>
+            <button type="submit" class="submit-btn"
+            [disabled]="registerForm.invalid">Iniciar sesión</button>
         </form>
+        <p>¿No tienes una cuenta? <a routerLink="/register" class="register-link">Regístrate aquí</a></p>
     </div>
 
 </div>

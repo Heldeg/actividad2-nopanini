@@ -49,10 +49,10 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
-  
+
   public logout(): Observable<any> {
     const token = this.getToken();
-    
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -64,7 +64,16 @@ export class AuthService {
       })
     );
   }
-  public register() {
-
+  public register(userData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, userData).pipe(
+      tap((response: any) => {
+        if (response.access_token) {
+          this.setToken(response.access_token);
+        }
+        if (response.role) {
+          localStorage.setItem('userRole', response.role);
+        }
+      })
+    );
   }
 }

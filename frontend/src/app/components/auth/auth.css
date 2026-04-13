@@ -112,3 +112,27 @@
     border: 2px solid #860101;
     padding: 10px;
 }
+
+.register-link, .register-link:visited, .register-link:active {
+    color: #0413b5;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.register-link:hover {
+    text-decoration: underline;
+    font-size: 1.05em;
+     
+}
+
+.submit-btn:disabled {
+    background: #a2a8b8; 
+    border-color: #a2a8b8;
+    color: #ffffff;
+    cursor: not-allowed; 
+    opacity: 0.8;
+}
+
+.submit-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
