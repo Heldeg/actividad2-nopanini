@@ -72,6 +72,7 @@
 }
 
 .login-btn,
+.logout-btn,
 .cart-btn,
 .chip {
     border: 1px solid #dde2eb;
@@ -82,13 +83,16 @@
 }
 
 .login-btn:hover,
+.logout-btn:hover,
 .cart-btn:hover,
+.logout-btn:hover,
 .chip:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(9, 15, 32, 0.1);
 }
 
-.login-btn {
+.login-btn,
+.logout-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -101,7 +105,8 @@
 }
 
 .login-btn svg,
-.cart-btn svg {
+.cart-btn svg,
+.logout-btn svg {
     width: 20px;
     height: 20px;
     fill: none;
@@ -214,6 +219,11 @@
     font-weight: 500;
     color: #141a29;
 }
+.role-info {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #6c7688;
+}
 
 @media (max-width: 1200px) {
     .topbar {
@@ -244,6 +254,7 @@
 
     .search-wrap input,
     .login-btn,
+    .logout-btn,
     .section-title,
     .chip,
     .book-info h3,

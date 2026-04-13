@@ -17,9 +17,10 @@ use App\Http\Controllers\AuthController;
 
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) { return $request->user(); });
+    Route::post('logout', [AuthController::class, 'logout'])->name('api.logout');
+});
 
 Route::post('login', [AuthController::class, 'login'])->name('login'); // keep this name for consistency with the frontend
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -30,7 +31,6 @@ Route::apiResource('orders', OrderController::class);
 
 //USER CONTROLLERS
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('admins/promote', [AdminController::class, 'promote'])->name('api.admins.promote');
     Route::post('employees/promote', [EmployeeController::class, 'promote'])->name('api.employees.promote');

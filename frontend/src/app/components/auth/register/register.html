@@ -1,0 +1,97 @@
+<div class="auth-page">
+    <div class="auth-card">
+        <h1 class="auth-title">Registrarse</h1>
+        
+        @if (errorMessage()) {
+        <div class="error-message">
+            <p class="text-danger">{{ errorMessage() }}</p>
+        </div>
+        }
+        
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+            
+            <div class="form-group">
+                <label for="name">Nombres<span>*</span>:</label>
+                <div class="input-wrap">
+                    <input type="text" id="name" name="name" #nameInput="ngModel" [(ngModel)]="request.name" required
+                        placeholder="Tu nombre">
+                </div>
+                @if (!nameInput.valid && nameInput.touched) {
+                <small class="text-danger">Por favor, introduce un nombre válido</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Apellidos<span>*</span>:</label>
+                <div class="input-wrap">
+                    <input type="text" id="lastName" name="lastName" #lastNameInput="ngModel"
+                        [(ngModel)]="request.lastName" required placeholder="Tus apellidos">
+                </div>
+                @if (!lastNameInput.valid && lastNameInput.touched) {
+                <small class="text-danger">Por favor, introduce tus apellidos</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email<span>*</span>:</label>
+                <div class="input-wrap">
+                    <input type="email" id="email" name="email" #emailInput="ngModel" [(ngModel)]="request.email"
+                        required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        placeholder="email@example.com">
+                </div>
+                @if (!emailInput.valid && emailInput.touched) {
+                <small class="text-danger">Por favor, introduce un email válido</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña<span>*</span>:</label>
+                <div class="input-wrap">
+                    <input type="password" id="password" #passwordInput="ngModel" name="password"
+                        [(ngModel)]="request.password" required>
+                </div>
+                @if (!passwordInput.valid && passwordInput.touched) {
+                <small class="text-danger">La contraseña es requerida</small>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Contraseña<span>*</span>:</label>
+                <div class="input-wrap">
+                    <input type="password" id="confirmPassword" #confirmPasswordInput="ngModel" name="confirmPassword"
+                        [(ngModel)]="request.confirmPassword" required>
+                </div>
+                @if (confirmPasswordInput.touched) {
+                    @if (confirmPasswordInput.errors?.['required']) {
+                        <small class="text-danger">Debes confirmar la contraseña</small>
+                    } @else if (request.password !== request.confirmPassword) {
+                        <small class="text-danger">Las contraseñas no coinciden</small>
+                    }
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Género<span>*</span>:</label>
+                <div class="input-wrap">
+                    <select name="gender" id="gender" #genderInput="ngModel" [(ngModel)]="request.gender" required>
+                        <option value="" disabled selected>Selecciona tu género</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="O">Otro</option>
+                    </select>
+                </div>
+                @if (!genderInput.valid && genderInput.touched) {
+                <small class="text-danger">Por favor, selecciona un género válido</small>
+                }
+            </div>
+
+            <button type="submit" class="submit-btn" 
+                    [disabled]="registerForm.invalid || request.password !== request.confirmPassword">
+                Registrarse
+            </button>
+        </form>
+        
+        <p>¿Ya tienes una cuenta? <a routerLink="/login" class="register-link">Inicia sesión aquí</a></p>
+    </div>
+</div>
+<app-footer></app-footer>

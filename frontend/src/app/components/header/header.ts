@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Categories } from '../categories/categories';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Categories],
+  imports: [Categories, TitleCasePipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
+  public authService: AuthService = inject(AuthService);
+  public isLoggedIn: WritableSignal<boolean>;
+  constructor(private router: Router) {
+    this.isLoggedIn = signal<boolean>(this.authService.isLoggedIn());
+  }
   protected readonly categories = [
     'Todos',
     'Clasicos',
@@ -25,4 +33,24 @@ export class Header {
     { category: 'Misterio', title: 'El Codigo Da Vinci' },
     { category: 'Ciencia', title: 'Breve Historia del Tiempo' },
   ];
+
+  onLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  getRole(): string {
+    return (this.authService as any).getRole ? (this.authService as any).getRole() : 'Usuario';
+  }
+
+  onLogout() {
+    this.authService.logout().subscribe({
+      next: (info) => {
+        console.log('Logout successful:', info);
+        this.isLoggedIn.set(this.authService.isLoggedIn());
+      }, error: (error) => {
+        console.error('Logout error:', error);
+      }
+      
+    });
+  }
 }
