@@ -2,11 +2,12 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Categories } from '../categories/categories';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Categories],
+  imports: [Categories, TitleCasePipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -37,6 +38,9 @@ export class Header {
     this.router.navigate(['/login']);
   }
 
+  getRole(): string {
+    return (this.authService as any).getRole ? (this.authService as any).getRole() : 'Usuario';
+  }
 
   onLogout() {
     this.authService.logout().subscribe({

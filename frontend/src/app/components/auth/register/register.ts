@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { Footer } from '../../footer/footer';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Register {
   public request: any;
-  public errorMessage: string;
+  public errorMessage: WritableSignal<string>;
 
   constructor(
     private authService: AuthService,
@@ -27,14 +27,14 @@ export class Register {
       confirmPassword: '',
       gender: ''
     };
-    this.errorMessage = '';
+    this.errorMessage = signal('');
 
 
   }
 
 onSubmit(): void {
     if (this.request.password !== this.request.confirmPassword) {
-      this.errorMessage = 'Las contraseñas no coinciden.';
+      this.errorMessage.set('Las contraseñas no coinciden.');
       return;
     }
 
@@ -52,9 +52,9 @@ onSubmit(): void {
       },
       error: (error) => {
         if (error.error && error.error.message) {
-           this.errorMessage = error.error.message;
+           this.errorMessage.set(error.error.message);
         } else {
-           this.errorMessage = 'Hubo un problema al crear la cuenta. Intenta de nuevo.';
+           this.errorMessage.set('Hubo un problema al crear la cuenta. Intenta de nuevo.');
         }
       }
     });

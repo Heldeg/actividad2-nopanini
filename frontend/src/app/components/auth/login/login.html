@@ -1,9 +1,9 @@
 <div class="auth-page">
     <div class="auth-card">
         <h1 class="auth-title">Iniciar Sesión</h1>
-        @if (errorMessage) {
+        @if (errorMessage()) {
         <div class="error-message">
-            <p>{{errorMessage }}</p>
+            <p>{{errorMessage() }}</p>
         </div>
         }
         <form (ngSubmit)="onSubmit()" #registerForm="ngForm">

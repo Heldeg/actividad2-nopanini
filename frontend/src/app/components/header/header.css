@@ -219,6 +219,11 @@
     font-weight: 500;
     color: #141a29;
 }
+.role-info {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #6c7688;
+}
 
 @media (max-width: 1200px) {
     .topbar {

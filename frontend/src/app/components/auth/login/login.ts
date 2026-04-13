@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Footer } from '../../footer/footer';
@@ -12,7 +12,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class Login {
   public request: any;
-  public errorMessage: string;
+  public errorMessage: WritableSignal<string>;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -21,9 +22,7 @@ export class Login {
       email: '',
       password: '',
     }
-    this.errorMessage = '';
-
-
+    this.errorMessage = signal('');
   }
 
   onSubmit(): void {
@@ -32,7 +31,7 @@ export class Login {
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        this.errorMessage = 'Credenciales inválidas. Por favor, inténtalo de nuevo.';
+        this.errorMessage.set('Credenciales inválidas. Por favor, inténtalo de nuevo.');
       }
     });
   }

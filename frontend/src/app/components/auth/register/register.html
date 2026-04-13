@@ -2,9 +2,9 @@
     <div class="auth-card">
         <h1 class="auth-title">Registrarse</h1>
         
-        @if (errorMessage) {
+        @if (errorMessage()) {
         <div class="error-message">
-            <p class="text-danger">{{ errorMessage }}</p>
+            <p class="text-danger">{{ errorMessage() }}</p>
         </div>
         }
         

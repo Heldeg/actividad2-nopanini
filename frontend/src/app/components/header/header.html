@@ -25,6 +25,8 @@
             Login
         </button>
         } @else {
+        <!-- add role info -->
+        <span class="role-info">Rol: {{ getRole() | titlecase }}</span>
         <button type="button" class="logout-btn" (click)="onLogout()" aria-label="Cerrar Sesión">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
