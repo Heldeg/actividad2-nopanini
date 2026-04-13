@@ -1,10 +1,17 @@
 <main class="content">
     <section>
         <h2 class="section-title">Categorias</h2>
+        @if (loading()) {
+        <div class="spinner-wrap" aria-live="polite" aria-busy="true">
+            <span class="loading-spinner" aria-hidden="true"></span>
+            <span class="loading-label">Cargando categorias...</span>
+        </div>
+        } @else {
         <div class="chips-row">
             @for (category of categories(); track category) {
-            <button type="button" class="chip" [class.active]="$index === 0">{{ category.name }}</button>
+            <button type="button" class="chip" [class.active]="$index === activeIndex()" (click)="selectCategory($index, category.name.toString())">{{ category.name }}</button>
             }
         </div>
+        }
     </section>
 </main>

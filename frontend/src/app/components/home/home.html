@@ -1,4 +1,4 @@
 <app-header></app-header>
-<app-categories></app-categories>
-<app-books></app-books>
+<app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
+<app-books [selectedCategory]="selectedCategory()"></app-books>
 <app-footer></app-footer>
