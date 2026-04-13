@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -90,6 +91,8 @@ class BookController extends Controller
             'description' => 'sometimes|string',
             'price_min' => 'sometimes|numeric',
             'price_max' => 'sometimes|numeric',
+            'category' => 'sometimes|string',
+            'author' => 'sometimes|string'
         ]);
 
         if (empty($validated)) {
@@ -123,6 +126,18 @@ class BookController extends Controller
         if (isset($validated['price_max'])) {
             $query->where('price', '<=', $validated['price_max']);
         }
+        if (isset($validated['category'])) {
+            $query->whereHas('categories', function ($q) use ($validated) {
+                $q->where('categories.name', 'like', '%' . $validated['category'] . '%');
+            });
+        }
+
+        if (isset($validated['author'])) {
+            $query->whereHas('authors', function ($q) use ($validated) {
+                $q->where('authors.full_name', 'like', '%' . $validated['author'] . '%');
+            });
+        }
+        
 
         $books = $query->get();
         return response()->json($books);
