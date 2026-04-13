@@ -1,13 +1,12 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Categories } from '../categories/categories';
 import { AuthService } from '../../services/auth/auth.service';
-import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Categories, RouterLink],
+  imports: [Categories],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
