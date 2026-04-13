@@ -2,18 +2,31 @@
     <section>
         <h2 class="section-title books-title">Todos los libros</h2>
         <div class="books-grid">
-            @for (book of books; track book.title) {
-            <article class="book-card">
-                <div class="cover-zone">
-                    <div class="cover-outline">
-                        <span class="cover-label">Portada<br />del libro</span>
+            @if (loading()) {
+                <div class="spinner-wrap" aria-live="polite" aria-busy="true">
+                    <span class="loading-spinner" aria-hidden="true"></span>
+                    <span class="loading-label">Cargando libros...</span>
+                </div>
+            } @else {
+                @for (book of bookList(); track book.title) {
+                <article class="book-card">
+                    <div class="cover-zone">
+                        @if (book.cover_image) {
+                            <div class="cover-container">
+                                <img [src]="book.cover_image" alt="Portada del libro {{ book.title }}" />
+                            </div>
+                        } @else {
+                            <div class="cover-outline">
+                                <span class="cover-label">Portada<br />del libro</span>
+                            </div>
+                        }
                     </div>
-                </div>
-                <div class="book-info">
-                    <span class="book-tag">{{ book.category }}</span>
-                    <h3>{{ book.title }}</h3>
-                </div>
-            </article>
+                    <div class="book-info">
+                        <span class="book-tag">{{ book.isbn }}</span>
+                        <h3>{{ book.title }}</h3>
+                    </div>
+                </article>
+                }
             }
         </div>
     </section>

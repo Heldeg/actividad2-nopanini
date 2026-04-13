@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Header } from '../header/header';
 import { Categories } from "../categories/categories";
 import { Books } from "../books/books";
@@ -12,5 +12,9 @@ import { Footer } from '../footer/footer';
   styleUrl: './home.css',
 })
 export class Home {
+  public selectedCategory = signal('');
 
+  onCategorySelected(category: string): void {
+    this.selectedCategory.set(category);
+  }
 }

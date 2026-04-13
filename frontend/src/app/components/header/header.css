@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.5px;
 }
@@ -52,7 +52,7 @@
     border: 0;
     outline: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 14px;
     color: #5e6574;
 }
 
@@ -99,7 +99,7 @@
     background: #060a2b;
     border-color: #060a2b;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     padding: 9px 14px;
 }
@@ -130,7 +130,7 @@
 
 .section-title {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .chip {
-    font-size: 20px;
+    font-size: 18px;
     padding: 8px 16px;
     color: #121826;
 }
@@ -188,7 +188,7 @@
 }
 
 .cover-label {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.2;
     text-align: center;
     color: #6c7688;
@@ -208,13 +208,13 @@
     color: #ffffff;
     border-radius: 999px;
     padding: 4px 11px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 }
 
 .book-info h3 {
     margin: 14px 0 0;
-    font-size: 30px;
+    font-size: 26px;
     line-height: 1.2;
     font-weight: 500;
     color: #141a29;
@@ -249,7 +249,7 @@
     }
 
     .brand {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .search-wrap input,
@@ -259,7 +259,7 @@
     .chip,
     .book-info h3,
     .cover-label {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .books-grid {
