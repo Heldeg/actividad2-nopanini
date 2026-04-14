@@ -11,7 +11,7 @@
 
 .topbar {
     display: grid;
-    grid-template-columns: 230px 1fr 220px;
+    grid-template-columns: 230px 1fr 250px;
     align-items: center;
     gap: 18px;
     padding: 18px 38px;
@@ -219,10 +219,11 @@
     font-weight: 500;
     color: #141a29;
 }
+
 .role-info {
-    margin-top: 8px;
     font-size: 14px;
     color: #6c7688;
+
 }
 
 @media (max-width: 1200px) {
