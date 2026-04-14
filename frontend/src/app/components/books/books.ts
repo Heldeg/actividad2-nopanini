@@ -1,13 +1,16 @@
-import { Component, WritableSignal, signal, Input } from '@angular/core';
+import { Component, WritableSignal, signal, Input, Output } from '@angular/core';
 import { BookModel } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
 import { finalize } from 'rxjs';
+import { CommonModule, UpperCasePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { BookDetailModal } from '../book-detail-modal/book-detail-modal';
 
 
 
 @Component({
   selector: 'app-books',
-  imports: [],
+  imports: [UpperCasePipe, CommonModule],
   templateUrl: './books.html',
   styleUrl: './books.css',
 })
@@ -15,7 +18,10 @@ export class Books {
   public bookList: WritableSignal<Array<BookModel>>;
   public loading = signal(true);
 
-  constructor(private bookService: BookService) {
+  constructor(
+    private bookService: BookService,
+    public dialog: MatDialog
+  ) {
     this.bookList = signal<Array<BookModel>>([]);
   }
 
@@ -32,6 +38,13 @@ export class Books {
       error: (err) => {
         console.error('Error fetching books:', err);
       }
+    });
+  }
+
+  bookDetails(book: BookModel): void {
+    this.dialog.open(BookDetailModal, {
+      width: '560px',
+      data: { book }
     });
   }
 

@@ -22,11 +22,11 @@
                 <circle cx="12" cy="8" r="3.5"></circle>
                 <path d="M5 20a7 7 0 0 1 14 0"></path>
             </svg>
-            Login
+            Iniciar Sesión
         </button>
         } @else {
         <!-- add role info -->
-        <span class="role-info">Rol: {{ getRole() | titlecase }}</span>
+        <span class="role-info">Perfil: {{ getRole() | titlecase }}</span>
         <button type="button" class="logout-btn" (click)="onLogout()" aria-label="Cerrar Sesión">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -37,12 +37,5 @@
             Cerrar Sesión
         </button>
         }
-        <button type="button" class="cart-btn" aria-label="Carrito">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="9" cy="20" r="1.5"></circle>
-                <circle cx="18" cy="20" r="1.5"></circle>
-                <path d="M3 4h2l2.2 10h10.3l1.8-7H6.4"></path>
-            </svg>
-        </button>
     </div>
 </header>

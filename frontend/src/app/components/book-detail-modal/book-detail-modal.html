@@ -1,0 +1,38 @@
+<div class="modal-header" mat-dialog-title>
+    <h2 class="modal-title">Descripción</h2>
+    <button class="close-btn" (click)="closeDialog()" aria-label="Cerrar">&#10005;</button>
+</div>
+
+<mat-dialog-content class="modal-body">
+    <div class="cover-row">
+        @if (data.book.cover_image) {
+        <img class="modal-cover" [src]="data.book.cover_image" alt="Portada de {{ data.book.title }}" />
+        } @else {
+        <div class="modal-cover-placeholder">
+            <span>Sin portada</span>
+        </div>
+        }
+        <div class="modal-meta">
+            <h3 class="modal-book-title">{{ data.book.title }}</h3>
+            <span class="modal-isbn">ISBN: {{ data.book.isbn }}</span>
+            @if (data.book.edition_num) {
+            <span class="modal-badge">Edición {{ data.book.edition_num }}</span>
+            }
+            @if (data.book.language) {
+            <span class="modal-badge">{{ data.book.language }}</span>
+            }
+            @if (data.book.price) {
+            <span class="modal-price">${{ data.book.price | number:'1.2-2' }}</span>
+            }
+        </div>
+    </div>
+
+    <div class="modal-description">
+        <h4 class="desc-label">Descripción</h4>
+        <p class="desc-text">{{ data.book.description || 'Sin descripción disponible.' }}</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="modal-actions">
+    <button class="btn-close-modal" (click)="closeDialog()">Cerrar</button>
+</mat-dialog-actions>

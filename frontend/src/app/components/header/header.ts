@@ -7,7 +7,7 @@ import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Categories, TitleCasePipe],
+  imports: [TitleCasePipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
