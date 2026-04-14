@@ -36,7 +36,7 @@
                 <label for="email">Email<span>*</span>:</label>
                 <div class="input-wrap">
                     <input type="email" id="email" name="email" #emailInput="ngModel" [(ngModel)]="request.email"
-                        required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        required
                         placeholder="email@example.com">
                 </div>
                 @if (!emailInput.valid && emailInput.touched) {
@@ -85,9 +85,13 @@
                 }
             </div>
 
-            <button type="submit" class="submit-btn" 
-                    [disabled]="registerForm.invalid || request.password !== request.confirmPassword">
-                Registrarse
+            <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || request.password !== request.confirmPassword || loading()">
+                @if (loading()) {
+                <span class="button-spinner" aria-hidden="true"></span>
+                <span>Registrando...</span>
+                } @else {
+                <span>Registrarse</span>
+                }
             </button>
         </form>
         

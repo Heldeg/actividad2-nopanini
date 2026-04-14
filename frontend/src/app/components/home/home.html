@@ -1,4 +1,7 @@
-<app-header></app-header>
-<app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
-<app-books [selectedCategory]="selectedCategory()"></app-books>
+<app-header (searchChanged)="onSearchChanged($event)"></app-header>
+<div class="home-page">
+    <app-categories (categorySelected)="onCategorySelected($event)"></app-categories>
+    <app-books [selectedCategory]="selectedCategory()" [searchQuery]="searchQuery()"></app-books>
+</div>
 <app-footer></app-footer>
+

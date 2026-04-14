@@ -11,7 +11,7 @@
             <circle cx="11" cy="11" r="6"></circle>
             <line x1="16" y1="16" x2="21" y2="21"></line>
         </svg>
-        <input type="text" placeholder="Buscar libros o autores..." />
+        <input type="text" placeholder="Buscar libros o autores..." (input)="onSearch($event)" />
     </div>
 
     <div class="top-actions">
@@ -27,14 +27,20 @@
         } @else {
         <!-- add role info -->
         <span class="role-info">Perfil: {{ getRole() | titlecase }}</span>
-        <button type="button" class="logout-btn" (click)="onLogout()" aria-label="Cerrar Sesión">
+        <button type="button" class="logout-btn" (click)="onLogout()" aria-label="Cerrar Sesión"
+            [disabled]="logoutLoading()">
+            @if (!logoutLoading()) {
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                 <polyline points="16 17 21 12 16 7"></polyline>
                 <line x1="21" y1="12" x2="9" y2="12"></line>
             </svg>
-            Cerrar Sesión
+            <span>Cerrar Sesión</span>
+            } @else {
+            <span class="button-spinner" aria-hidden="true"></span>
+            <span>Cerrando...</span>
+            }
         </button>
         }
     </div>

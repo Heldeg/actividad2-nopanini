@@ -13,8 +13,13 @@ import { Footer } from '../footer/footer';
 })
 export class Home {
   public selectedCategory = signal('');
+  public searchQuery = signal('');
 
   onCategorySelected(category: string): void {
     this.selectedCategory.set(category);
+  }
+
+  onSearchChanged(query: string): void {
+    this.searchQuery.set(query);
   }
 }

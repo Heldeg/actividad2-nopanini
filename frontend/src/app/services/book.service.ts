@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -39,7 +39,9 @@ export class BookService {
 
   // Busqueda avanzada de libros por título, descripción, numero de edición, etc.
   public searchBooks(param: string, query: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/books/search?' + param + '=' + query);
+    const params = new HttpParams().set(param, query.trim());
+
+    return this.http.get(`${this.apiUrl}/books/search`, { params });
   }
 
 }
