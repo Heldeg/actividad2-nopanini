@@ -11,7 +11,7 @@
                 <label for="email">Email:</label>
                 <div class="input-wrap">
                     <input type="email" id="email" name="email" #emailInput="ngModel" [(ngModel)]="request.email"
-                        required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        required
                         placeholder="email@example.com"
                         >
                 </div>
@@ -31,8 +31,14 @@
             </div>
 
 
-            <button type="submit" class="submit-btn"
-            [disabled]="registerForm.invalid">Iniciar sesión</button>
+            <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || loading()">
+                @if (loading()) {
+                <span class="button-spinner" aria-hidden="true"></span>
+                <span>Ingresando...</span>
+                } @else {
+                <span>Iniciar sesión</span>
+                }
+            </button>
         </form>
         <p>¿No tienes una cuenta? <a routerLink="/register" class="register-link">Regístrate aquí</a></p>
     </div>

@@ -40,13 +40,4 @@ export class Categories {
     this.categorySelected.emit(categoryName);
   }
 
-  protected readonly categoriesTest = [
-    'Todos',
-    'Clasicos',
-    'Ficcion',
-    'Misterio',
-    'Ciencia',
-    'Fantasia',
-    'Poesia',
-  ];
 }
