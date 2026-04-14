@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Footer } from '../../footer/footer';
 import { Router, RouterLink } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { Router, RouterLink } from '@angular/router';
 export class Login {
   public request: any;
   public errorMessage: WritableSignal<string>;
+  public loading: WritableSignal<boolean>;
 
   constructor(
     private authService: AuthService,
@@ -23,10 +25,20 @@ export class Login {
       password: '',
     }
     this.errorMessage = signal('');
+    this.loading = signal(false);
   }
 
   onSubmit(): void {
-    this.authService.login(this.request).subscribe({
+    if (this.loading()) {
+      return;
+    }
+
+    this.errorMessage.set('');
+    this.loading.set(true);
+
+    this.authService.login(this.request).pipe(
+      finalize(() => this.loading.set(false))
+    ).subscribe({
       next: (response) => {
         this.router.navigate(['/home']);
       },
