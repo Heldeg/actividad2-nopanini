@@ -241,6 +241,11 @@
     }
 }
 
+.brand a {
+    color: #060a2b;
+    text-decoration: none;
+}
+
 @media (max-width: 760px) {
 
     .content,
