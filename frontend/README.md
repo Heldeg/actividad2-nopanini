@@ -1,59 +1,134 @@
-# Frontend
+# Frontend - Actividad 2 Nopanini
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
+Aplicación web desarrollada con Angular para la gestión y visualización de contenido relacionado con libros, usuarios y biblioteca. El proyecto incluye autenticación, navegación por rutas, catálogo y componentes reutilizables para una experiencia moderna en el navegador.
 
-## Development server
+## Descripción general
 
-To start a local development server, run:
+Este frontend está construido como una Single Page Application usando Angular 21 y Angular Material. A partir de la estructura del proyecto, la aplicación contempla módulos y servicios para:
+
+- autenticación de usuarios
+- registro e inicio de sesión
+- visualización de libros
+- categorías
+- autores
+- editoriales
+- inventario
+- biblioteca
+- órdenes
+- reproducción de video
+- manejo de errores y rutas no válidas
+
+## Tecnologías utilizadas
+
+- Angular 21.1.4
+- Angular Material 21.1.4
+- Angular CDK 21.1.4
+- TypeScript 5.9.2
+- RxJS 7.8
+- Vitest 4
+- npm 11.6.2
+
+### Requisitos recomendados
+
+Aunque el proyecto no fija una versión exacta de Node.js en el archivo de configuración, por la versión de Angular utilizada se recomienda trabajar con una versión moderna y compatible, por ejemplo:
+
+- Node.js 20.19 o superior
+- o Node.js 22.12 o superior
+
+## Rutas principales
+
+La aplicación actualmente define las siguientes rutas:
+
+- `/home` página principal
+- `/login`  inicio de sesión
+- `/register`  registro de usuario
+- `**`  pantalla de error para rutas no encontradas
+
+## Instalación del proyecto
+
+1. Clonar el repositorio.
+
+2. Instalar las dependencias:
 
 ```bash
+npm install
+```
+
+3. Iniciar el servidor de desarrollo con node:
+
+```bash
+npm start
+```
+
+4. Iniciar el servidor de desarrollo con Angular CLI
+
+En caso de tener instalado angular CLI, se puede levantar el proyecto haciendo uso de los comandos propios de angular como lo es el siguiete:
+```
 ng serve
 ```
+> Este comando es opcional ya que el archivo de package.json esta configurado para lanzar este comando al momento de ejecutar `npm start`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+5. Abrir en el navegador:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Comandos de interes
+
+### Levantar el proyecto en desarrollo
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
-
-To build the project run:
+### Compilar para producción
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Compilar en modo observación
 
 ```bash
-ng test
+npm run watch
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Ejecutar pruebas
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Estructura general del proyecto
 
-## Additional Resources
+La carpeta principal de código fuente está en `src/` y contiene:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `app/` → componentes, rutas y configuración principal
+- `components/` → interfaz de usuario dividida por funcionalidades
+- `models/` → modelos de datos de la aplicación
+- `services/` → servicios para acceso y gestión de la información
+- `environments/` → configuración por entorno
+- `public/assets/` → recursos estáticos, incluidos videos
+
+## Componentes destacados
+
+Entre los componentes identificados en el proyecto se encuentran:
+
+- Home
+- Header
+- Footer
+- Books
+- Categories
+- Book Detail Modal
+- Video Viewer
+- Login
+- Register
+- Error
+
+## Notas de desarrollo
+
+- El proyecto utiliza Angular Material para extender algunas funcionalidades del aspecto visual.
+- La navegación se realiza mediante Angular Router.
+- La suite de pruebas está configurada con Vitest (No se profundizo en pruebas para este proyecto).
