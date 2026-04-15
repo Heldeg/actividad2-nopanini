@@ -1,0 +1,22 @@
+<section class="carousel-section">
+    <div class="carousel-shell">
+        <button class="nav-button" type="button">
+            &#10094;
+        </button>
+        <div class="video-card">
+            <div class="video-frame">
+                <video class="video-element" [src]="videoUrl" controls autoplay loop muted>
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+            <div class="video-info">
+                <h3>{{ currentVideo.title }}</h3>
+                <p>{{ currentVideo.description }}</p>
+            </div>
+        </div>
+
+        <button class="nav-button" type="button">
+            &#10095;
+        </button>
+    </div>
+</section>
