@@ -63,7 +63,7 @@ npm start
 4. Iniciar el servidor de desarrollo con Angular CLI
 
 En caso de tener instalado angular CLI, se puede levantar el proyecto haciendo uso de los comandos propios de angular como lo es el siguiete:
-```
+```bash
 ng serve
 ```
 > Este comando es opcional ya que el archivo de package.json esta configurado para lanzar este comando al momento de ejecutar `npm start`

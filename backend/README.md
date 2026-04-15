@@ -26,6 +26,29 @@ Por eso, para instalarlo solo necesitas:
 ```bash
 composer install
 ```
+El siguiente comando solo se ejecuta en linux por lo que si se esta trabajando en windows, abrir una terminal de `WSL` y ejecutar el siguiente comando para instalar las dependencias del proyecto (vendor)
+
+```bash
+docker run --rm \
+	-u "$(id -u):$(id -g)" \
+	-v "$(pwd):/var/www/html" \
+	-w /var/www/html \
+	laravelsail/php84-composer:latest \
+	composer install --ignore-platform-reqs
+```
+
+Si trabajas desde WSL sobre una ruta montada en `/mnt/c` (por ejemplo OneDrive), agrega este paso antes de instalar dependencias para evitar timeouts de Composer durante descompresion:
+
+```bash
+composer config process-timeout 0
+```
+
+`composer install` crea la carpeta `vendor/` en la raiz de este backend (misma altura de `app/`, `routes/`, etc.).
+
+`vendor/` no se sube al repositorio (esta ignorada en `.gitignore`), por lo que cada clon del proyecto debe ejecutar `composer install` para regenerarla.
+
+Ademas, el comando `./vendor/bin/sail` solo existe despues de instalar dependencias con Composer.
+
 
 Eso descargara Sail dentro de `vendor/` y dejara disponible el ejecutable:
 
@@ -57,27 +80,17 @@ Luego inicia los servicios con:
 
 ### 1) Instalar dependencias
 
+Antes de instalar dependencias, si estas en WSL usando una ruta en `/mnt/c`, ejecuta:
+
+```bash
+composer config process-timeout 0
+```
+
 ```bash
 composer install
 npm install
 ```
 
-Si no tienes Composer instalado localmente, puedes instalar dependencias del backend usando Docker:
-
-```bash
-docker run --rm \
-	-u "$(id -u):$(id -g)" \
-	-v "$(pwd):/var/www/html" \
-	-w /var/www/html \
-	laravelsail/php84-composer:latest \
-	composer install --ignore-platform-reqs
-```
-
-`composer install` crea la carpeta `vendor/` en la raiz de este backend (misma altura de `app/`, `routes/`, etc.).
-
-`vendor/` no se sube al repositorio (esta ignorada en `.gitignore`), por lo que cada clon del proyecto debe ejecutar `composer install` para regenerarla.
-
-Ademas, el comando `./vendor/bin/sail` solo existe despues de instalar dependencias con Composer.
 
 ### 2) Configurar entorno
 
