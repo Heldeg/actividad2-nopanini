@@ -3,11 +3,12 @@ import { Header } from '../header/header';
 import { Categories } from "../categories/categories";
 import { Books } from "../books/books";
 import { Footer } from '../footer/footer';
+import { VideoViewer } from '../video-viewer/video-viewer';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Header, Categories, Books, Footer],
+  imports: [Header, Categories, Books, Footer, VideoViewer],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
