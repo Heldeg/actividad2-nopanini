@@ -62,6 +62,17 @@ composer install
 npm install
 ```
 
+Si no tienes Composer instalado localmente, puedes instalar dependencias del backend usando Docker:
+
+```bash
+docker run --rm \
+	-u "$(id -u):$(id -g)" \
+	-v "$(pwd):/var/www/html" \
+	-w /var/www/html \
+	laravelsail/php84-composer:latest \
+	composer install --ignore-platform-reqs
+```
+
 `composer install` crea la carpeta `vendor/` en la raiz de este backend (misma altura de `app/`, `routes/`, etc.).
 
 `vendor/` no se sube al repositorio (esta ignorada en `.gitignore`), por lo que cada clon del proyecto debe ejecutar `composer install` para regenerarla.
@@ -71,9 +82,8 @@ Ademas, el comando `./vendor/bin/sail` solo existe despues de instalar dependenc
 ### 2) Configurar entorno
 
 ```bash
-# Para este proyecto se enviara el archivo .env incluido por lo que no es necesario sacar una copia del environment de prueba. Lo mismo aplica para generar la la APP_KEY ya que se incluira.
 cp .env.example .env
-php artisan key:generate
+./vendor/bin/sailartisan key:generate
 ```
 
 Si usas Sail, valida que en `.env` tengas configuradas las variables de base de datos para MySQL.
